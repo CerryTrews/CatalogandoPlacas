@@ -1,70 +1,28 @@
 public class Placa {
-    private char l1, l2, l3;
-    private char n1, n2, n3, n4;
+    public static void main(String[] args) {
 
-    Placa(char l1, char l2, char l3, char n1, char n2, char n3, char n4) {
-        l1 = this.l1;
-        l2 = this.l2;
-        l3 = this.l3;
-        n1 = this.n1;
-        n2 = this.n2;
-        n3 = this.n3;
-        n4 = this.n4;
-    }
+        char l1, l2, l3;
+        int n1, n2, n3, n4;
+        long contador = 0;
 
-    public char getL1() {
-        return l1;
-    }
-
-    public void setL1(char l1) {
-        this.l1 = l1;
-    }
-
-    public char getL2() {
-        return l2;
-    }
-
-    public void setL2(char l2) {
-        this.l2 = l2;
-    }
-
-    public char getL3() {
-        return l3;
-    }
-
-    public void setL3(char l3) {
-        this.l3 = l3;
-    }
-
-    public char getN1() {
-        return n1;
-    }
-
-    public void setN1(char n1) {
-        this.n1 = n1;
-    }
-
-    public char getN2() {
-        return n2;
-    }
-
-    public void setN2(char n2) {
-        this.n2 = n2;
-    }
-
-    public char getN3() {
-        return n3;
-    }
-
-    public void setN3(char n3) {
-        this.n3 = n3;
-    }
-
-    public char getN4() {
-        return n4;
-    }
-
-    public void setN4(char n4) {
-        this.n4 = n4;
+        for(l1 = 'A'; l1 <= 'Z'; l1++) {
+            for(l2 = 'A'; l2 <= 'Z'; l2++) {
+                for(l3 = 'A'; l3 <= 'Z'; l3++) {
+                    for(n1 = 0; n1 <= 9; n1++) {
+                        for(n2 = 0; n2 <= 9; n2++) {
+                            for(n3 = 0; n3 <= 9; n3++) {
+                                for(n4 = 0; n4 <= 9; n4++) {
+                                    String letrasDaPlaca = String.valueOf(l1) +  String.valueOf(l2) + String.valueOf(l3);
+                                    String numerosDaPlaca = String.valueOf(n1) + String.valueOf(n2) + String.valueOf(n3) + String.valueOf(n4);
+                                    System.out.print(letrasDaPlaca + "-" + numerosDaPlaca + "\t");
+                                    contador++;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        System.out.println("\nContador final é de: " + contador + " combinações para as placas veículares.");
     }
 }

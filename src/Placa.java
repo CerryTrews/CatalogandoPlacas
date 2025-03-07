@@ -87,6 +87,8 @@ public class Placa {
 
         System.out.println("\nContador final é de: " + contadorMS + " combinações para as placas padrão Mercosul.");
         System.out.println();
+        System.out.println("Dados escritos no arquivo com sucesso!");
+        System.out.println();
         System.out.println("Total de combinações possíveis entre placas padrão BR(" + contadorBR + ") e Mercosul(" + contadorMS + ") é de " + contadorBR + contadorMS);
     }
 }

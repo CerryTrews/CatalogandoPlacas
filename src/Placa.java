@@ -14,6 +14,13 @@ public class Placa {
         long contadorMS = 0;
         String caminhoArquivo = "Placas.txt";
 
+        /*
+        -todo
+            - função para criar um arquivo com try, e dar nome ao arquivo
+            - função que escreve no arquivo
+            - função que fecha o arquivo
+         */
+
         try {
 
             File arquivo = new File(caminhoArquivo);
@@ -36,10 +43,12 @@ public class Placa {
                             for (n2 = 0; n2 <= 9; n2++) {
                                 for (n3 = 0; n3 <= 9; n3++) {
                                     for (n4 = 0; n4 <= 9; n4++) {
-                                        String placaBR = String.valueOf(l1) + String.valueOf(l2) + String.valueOf(l3) + "-" +
-                                                String.valueOf(n1) + String.valueOf(n2) + String.valueOf(n3) + String.valueOf(n4);
+                                        String placaBR = String.valueOf(l1) + String.valueOf(l2) + String.valueOf(l3) +
+                                                "-" + String.valueOf(n1) + String.valueOf(n2) + String.valueOf(n3) +
+                                                String.valueOf(n4);
                                         //System.out.print(placaBR + "\t");
-                                        bufferEscrita.write(placaBR + "\t");
+
+                                        //bufferEscrita.write(placaBR + "\t");
                                         contadorBR++;
                                     }
                                 }
@@ -60,14 +69,14 @@ public class Placa {
                             for (ms4 = 'A'; ms4 <= 'Z'; ms4++) {
                                 for (msn2 = 0; msn2 <= 9; msn2++) {
                                     for (msn3 = 0; msn3 <= 9; msn3++) {
-                                        String placaMS = String.valueOf(ms1) + String.valueOf(ms2) + String.valueOf(ms3) +
-                                                String.valueOf(msn1) + String.valueOf(ms4) + String.valueOf(msn2) +
-                                                String.valueOf(msn3);
-                                    /*
-                                    System.out.print(placa + "\t");
+                                        String placaMS = String.valueOf(ms1) + String.valueOf(ms2) +
+                                                String.valueOf(ms3) + String.valueOf(msn1) + String.valueOf(ms4) +
+                                                String.valueOf(msn2) + String.valueOf(msn3);
 
-                                     */
-                                        bufferEscrita.write(placaMS + "\t");
+                                        //System.out.print(placaMS + "\t");
+
+
+                                        //bufferEscrita.write(placaMS + "\t");
                                         contadorMS++;
                                     }
                                 }
@@ -78,7 +87,6 @@ public class Placa {
             }
 
             bufferEscrita.close();
-            System.out.println("Dados escritos no arquivo com sucesso!");
 
         } catch(IOException exc ) {
             System.out.println("Ocorreu um erro!");

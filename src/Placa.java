@@ -39,13 +39,13 @@ public class Placa {
                     }
                 }
             } catch (IOException exc) {
-                    System.out.println("Erro ao escrever lno arquivo: " + nomeArquivo);
-                    exc.printStackTrace();
+                System.out.println("Erro ao escrever lno arquivo: " + nomeArquivo);
+                exc.printStackTrace();
             }
         }
-        String nomeArquivoMS = "PlacasMercosul.txt";
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(nomeArquivoMS))) {
-            for (ms1 = 'A'; ms1 <= 'Z'; ms1++) {
+        for (ms1 = 'A'; ms1 <= 'Z'; ms1++) {
+            String nomeArquivoMS = "PlacasMercosul com inicial " + ms1 + ".txt";
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(nomeArquivoMS))) {
                 for (ms2 = 'A'; ms2 <= 'Z'; ms2++) {
                     for (ms3 = 'A'; ms3 <= 'Z'; ms3++) {
                         for (msn1 = 0; msn1 <= 9; msn1++) {
@@ -61,14 +61,14 @@ public class Placa {
                         }
                     }
                 }
+            } catch (IOException e) {
+                System.out.println("Erro ao escrever no arquivo: " + nomeArquivoMS);
+                e.printStackTrace();
             }
-        } catch (IOException e) {
-            System.out.println("Erro ao escrever no arquivo: " + nomeArquivoMS);
-            e.printStackTrace();
-        }
 
-        System.out.println("Contador final é de: " + contadorBR + " combinações para as placas padrão BR.");
-        System.out.println("Contador final é de: " + contadorMS + " combinações para as placas padrão Mercosul.");
-        System.out.println("Total de combinações possíveis entre placas padrão BR e Mercosul é de " + (contadorBR + contadorMS));
+            System.out.println("Contador final é de: " + contadorBR + " combinações para as placas padrão BR.");
+            System.out.println("Contador final é de: " + contadorMS + " combinações para as placas padrão Mercosul.");
+            System.out.println("Total de combinações possíveis entre placas padrão BR e Mercosul é de " + (contadorBR + contadorMS));
+        }
     }
 }

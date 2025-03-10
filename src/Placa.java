@@ -6,6 +6,6 @@ public class Placa {
 
         criar.bancoDeDados();
         bd.procuraPlaca("Mercosul", "AAA0A00");
-        bd.procuraPlaca("Brasil", "EYL-4251");
+        bd.procuraPlaca("Brasil", "AAA-0000");
     }
 }

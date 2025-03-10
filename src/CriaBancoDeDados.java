@@ -11,10 +11,44 @@ public class CriaBancoDeDados {
     long contadorBR = 0;
     long contadorMS = 0;
 
+    boolean bancoDeDadosJaExiste() {
+        String pastaDoBanco = "Banco de Dados";
+        File pasta = new File(pastaDoBanco);
+
+        if(!pasta.exists() || !pasta.isDirectory()) {
+            return false;
+        }
+
+        for(char letra = 'A'; letra <= 'Z'; letra++) {
+            String nomeArquivoBR = pastaDoBanco + "/PlacaBr com inicial " + letra + ".txt";
+            File arquivoBR = new File(nomeArquivoBR);
+
+            if(!arquivoBR.exists()) {
+                return false;
+            }
+        }
+
+        for(char letra = 'A'; letra <= 'Z'; letra++) {
+            String nomeArquivoMS = pastaDoBanco + "/PlacasMercosul com inicial " + letra + ".txt";
+            File arquivoMS = new File(nomeArquivoMS);
+
+
+            if(!arquivoMS.exists()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     void bancoDeDados() {
 
         String pastaDoBanco = "Banco de Dados";
         String caminhoDados = "Banco de Dados/";
+
+        if(bancoDeDadosJaExiste()) {
+            System.out.println("Banco de Dados já existe. Não é necessário criá-lo.");
+            return;
+        }
 
         File pasta = new File(pastaDoBanco);
 
@@ -25,9 +59,8 @@ public class CriaBancoDeDados {
                 System.out.println("Pasta do banco de dados foi criada!");
             } else {
                 System.out.println("Falha ao criar a pasta do banco.");
+                return;
             }
-        } else {
-            System.out.println("A pasta ja existe!");
         }
 
         for (l1 = 'A'; l1 <= 'Z'; l1++) {
@@ -50,7 +83,7 @@ public class CriaBancoDeDados {
                     }
                 }
             } catch (IOException exc) {
-                System.out.println("Erro ao escrever lno arquivo: " + nomeArquivo);
+                System.out.println("Erro ao escrever no arquivo: " + nomeArquivo);
                 exc.printStackTrace();
             }
             System.out.println("Banco de dados: PlacaBr com inicial " + l1 + " criado!");
@@ -81,5 +114,8 @@ public class CriaBancoDeDados {
             System.out.println("Banco de dados: Placa Mercosul com inicial " + ms1 + " criado!");
         }
         System.out.println("Banco de dados criado!");
+        System.out.println("Total de placas padrão BR criadas: " + contadorBR);
+        System.out.println("Total de placas padrão Mercosul criadas; " + contadorMS);
+        System.out.println("Total de placas criadas: " + (contadorMS + contadorBR));
     }
 }

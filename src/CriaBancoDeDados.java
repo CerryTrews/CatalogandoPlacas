@@ -20,7 +20,7 @@ public class CriaBancoDeDados {
         }
 
         for(char letra = 'A'; letra <= 'Z'; letra++) {
-            String nomeArquivoBR = pastaDoBanco + "/PlacaBr com inicial " + letra + ".txt";
+            String nomeArquivoBR = pastaDoBanco + "/Placas Brasil com inicial " + letra + ".txt";
             File arquivoBR = new File(nomeArquivoBR);
 
             if(!arquivoBR.exists()) {
@@ -29,7 +29,7 @@ public class CriaBancoDeDados {
         }
 
         for(char letra = 'A'; letra <= 'Z'; letra++) {
-            String nomeArquivoMS = pastaDoBanco + "/PlacasMercosul com inicial " + letra + ".txt";
+            String nomeArquivoMS = pastaDoBanco + "/Placas Mercosul com inicial " + letra + ".txt";
             File arquivoMS = new File(nomeArquivoMS);
 
 
@@ -64,8 +64,8 @@ public class CriaBancoDeDados {
         }
 
         for (l1 = 'A'; l1 <= 'Z'; l1++) {
-            System.out.println("Criando PlacaBr com inicial " + l1 + ".txt");
-            String nomeArquivo = caminhoDados + "PlacaBr com inicial " + l1 + ".txt";
+            System.out.println("Criando Placas Brasil com inicial " + l1 + ".txt");
+            String nomeArquivo = caminhoDados + "Placas Brasil com inicial " + l1 + ".txt";
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(nomeArquivo))) {
                 for (l2 = 'A'; l2 <= 'Z'; l2++) {
                     for (l3 = 'A'; l3 <= 'Z'; l3++) {
@@ -75,6 +75,9 @@ public class CriaBancoDeDados {
                                     for (n4 = 0; n4 <= 9; n4++) {
                                         String placaBR = String.format("%c%c%c-%d%d%d%d", l1, l2, l3, n1, n2, n3, n4);
                                         writer.write(placaBR + "\t");
+                                        if(contadorBR %5 == 0) {
+                                            writer.newLine();
+                                        }
                                         contadorBR++;
                                     }
                                 }
@@ -86,11 +89,11 @@ public class CriaBancoDeDados {
                 System.out.println("Erro ao escrever no arquivo: " + nomeArquivo);
                 exc.printStackTrace();
             }
-            System.out.println("Banco de dados: PlacaBr com inicial " + l1 + " criado!");
+            System.out.println("Banco de dados: Placas Brasil com inicial " + l1 + " criado!");
         }
         for (ms1 = 'A'; ms1 <= 'Z'; ms1++) {
-            System.out.println("Criando Placa Mercosul com inicial " + ms1 + ".txt");
-            String nomeArquivoMS = caminhoDados + "PlacasMercosul com inicial " + ms1 + ".txt";
+            System.out.println("Criando Placas Mercosul com inicial " + ms1 + ".txt");
+            String nomeArquivoMS = caminhoDados + "Placas Mercosul com inicial " + ms1 + ".txt";
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(nomeArquivoMS))) {
                 for (ms2 = 'A'; ms2 <= 'Z'; ms2++) {
                     for (ms3 = 'A'; ms3 <= 'Z'; ms3++) {
@@ -100,6 +103,9 @@ public class CriaBancoDeDados {
                                     for (msn3 = 0; msn3 <= 9; msn3++) {
                                         String placaMS = String.format("%c%c%c%d%c%d%d", ms1, ms2, ms3, msn1, ms4, msn2, msn3);
                                         writer.write(placaMS + "\t");
+                                        if(contadorMS %5 == 0) {
+                                            writer.newLine();
+                                        }
                                         contadorMS++;
                                     }
                                 }
@@ -111,7 +117,7 @@ public class CriaBancoDeDados {
                 System.out.println("Erro ao escrever no arquivo: " + nomeArquivoMS);
                 e.printStackTrace();
             }
-            System.out.println("Banco de dados: Placa Mercosul com inicial " + ms1 + " criado!");
+            System.out.println("Banco de dados: Placas Mercosul com inicial " + ms1 + " criado!");
         }
         System.out.println("Banco de dados criado!");
         System.out.println("Total de placas padrão BR criadas: " + contadorBR);

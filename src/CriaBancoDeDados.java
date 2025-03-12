@@ -29,7 +29,6 @@ public class CriaBancoDeDados {
             String nomeArquivoMS = pastaDoBanco + "/Placas Mercosul com inicial " + letra + ".txt";
             File arquivoMS = new File(nomeArquivoMS);
 
-
             if(!arquivoMS.exists()) {
                 return false;
             }

@@ -4,12 +4,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class CriaBancoDeDados {
-    char l1, l2, l3;
-    int n1, n2, n3, n4;
-    char ms1, ms2, ms3, ms4;
-    int msn1, msn2, msn3;
-    long contadorBR = 0;
-    long contadorMS = 0;
+    char l1, l2, l3, ms1, ms2, ms3, ms4;
+    int n1, n2, n3, n4, msn1, msn2, msn3;
+    long contadorBR, contadorMS = 0;
 
     boolean bancoDeDadosJaExiste() {
         String pastaDoBanco = "Banco de Dados";

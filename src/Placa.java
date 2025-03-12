@@ -5,9 +5,9 @@ public class Placa {
         Registro bd = new Registro();
 
         criar.bancoDeDados();
-        bd.procuraPlaca("Mercosul", "AAA0A00");
-        bd.procuraPlaca("Brasil", "AAA-0000");
-        bd.procuraPlaca("Mercosul", "AAB0A00");
-        bd.procuraPlaca("Brasil", "EYL-4561");
+        bd.procuraPlaca("Mercosul", "ABC0A00");
+        bd.procuraPlaca("Brasil", "ABC-1234");
+        bd.procuraPlaca("Mercosul", "ABC-1234");
+        bd.procuraPlaca("Brasil", "ACD2B90");
     }
 }

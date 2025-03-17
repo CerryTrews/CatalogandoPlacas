@@ -1,13 +1,14 @@
 public class Placa {
     public static void main(String[] args) {
+        BancoDeDados bd = new BancoDeDados();
+        MenuPrograma programa = new MenuPrograma();
+        Registro registro = new Registro();
 
-        CriaBancoDeDados criar = new CriaBancoDeDados();
-        Registro bd = new Registro();
+        //bd.criaBD();
 
-        criar.bancoDeDados();
-        bd.procuraPlaca("Mercosul", "ABC0A00");
-        bd.procuraPlaca("Brasil", "ABC-1234");
-        bd.procuraPlaca("Mercosul", "ABC-1234");
-        bd.procuraPlaca("Brasil", "ACD2B90");
+        //registro.procuraPlaca("Brasil", "EYL-4251");
+
+        // bd.registroExiste();
+        programa.chamaMenu();
     }
 }

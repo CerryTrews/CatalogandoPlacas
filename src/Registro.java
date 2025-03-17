@@ -8,9 +8,11 @@ public class Registro {
     private static final String PADRAO_MERCOSUL = "Mercosul";
 
     void registraPlaca() {
+
         /*
         todo
-            deverá marcar no banco de dados na placa como AAA-0000(registrada)
+            vai chamar a verificação do registro e caso não haja registro, registrará a placa do usuário
+            caso seja encontrada no banco de dados.
          */
     }
 

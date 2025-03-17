@@ -3,12 +3,9 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class CriaBancoDeDados {
-    char l1, l2, l3, ms1, ms2, ms3, ms4;
-    int n1, n2, n3, n4, msn1, msn2, msn3;
-    long contadorBR, contadorMS = 0;
+public class BancoDeDados {
 
-    boolean bancoDeDadosJaExiste() {
+    boolean verificaBD() {
         String pastaDoBanco = "Banco de Dados";
         File pasta = new File(pastaDoBanco);
 
@@ -36,13 +33,29 @@ public class CriaBancoDeDados {
         return true;
     }
 
-    void bancoDeDados() {
+    boolean verificaRegistro() {
+        String pastaDoRegistro = "Registro";
+        File pasta = new File(pastaDoRegistro);
+
+        if(!pasta.exists() || !pasta.isDirectory()) {
+            System.out.println("Diretório de registros não existe!");
+            return false;
+        }
+        System.out.println("Diretório de registro existente.");
+        return true;
+    }
+
+    void criaBD() {
+
+        char l1, l2, l3, l4, l5, l6, l7;
+        int n1, n2, n3, n4, n5, n6, n7;
+        long contadorBR = 0, contadorMS = 0;
 
         String pastaDoBanco = "Banco de Dados";
         String caminhoDados = "Banco de Dados/";
 
-        if(bancoDeDadosJaExiste()) {
-            System.out.println("Banco de Dados já existe. Não é necessário criá-lo.");
+        if(verificaBD()) {
+            System.out.println("Banco de Dados encontrado.");
             return;
         }
 
@@ -87,17 +100,17 @@ public class CriaBancoDeDados {
             }
             System.out.println("Banco de dados: Placas Brasil com inicial " + l1 + " criado!");
         }
-        for (ms1 = 'A'; ms1 <= 'Z'; ms1++) {
-            System.out.println("Criando Placas Mercosul com inicial " + ms1 + ".txt");
-            String nomeArquivoMS = caminhoDados + "Placas Mercosul com inicial " + ms1 + ".txt";
+        for (l4 = 'A'; l4 <= 'Z'; l4++) {
+            System.out.println("Criando Placas Mercosul com inicial " + l4 + ".txt");
+            String nomeArquivoMS = caminhoDados + "Placas Mercosul com inicial " + l4 + ".txt";
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(nomeArquivoMS))) {
-                for (ms2 = 'A'; ms2 <= 'Z'; ms2++) {
-                    for (ms3 = 'A'; ms3 <= 'Z'; ms3++) {
-                        for (msn1 = 0; msn1 <= 9; msn1++) {
-                            for (ms4 = 'A'; ms4 <= 'Z'; ms4++) {
-                                for (msn2 = 0; msn2 <= 9; msn2++) {
-                                    for (msn3 = 0; msn3 <= 9; msn3++) {
-                                        String placaMS = String.format("%c%c%c%d%c%d%d", ms1, ms2, ms3, msn1, ms4, msn2, msn3);
+                for (l5 = 'A'; l5 <= 'Z'; l5++) {
+                    for (l6 = 'A'; l6 <= 'Z'; l6++) {
+                        for (n5 = 0; n5 <= 9; n5++) {
+                            for (l7 = 'A'; l7 <= 'Z'; l7++) {
+                                for (n6 = 0; n6 <= 9; n6++) {
+                                    for (n7 = 0; n7 <= 9; n7++) {
+                                        String placaMS = String.format("%c%c%c%d%c%d%d", l4, l5, l6, n5, l7, n6, n7);
                                         writer.write(placaMS + "\t");
                                         if(contadorMS %5 == 0) {
                                             writer.newLine();
@@ -113,11 +126,21 @@ public class CriaBancoDeDados {
                 System.out.println("Erro ao escrever no arquivo: " + nomeArquivoMS);
                 e.printStackTrace();
             }
-            System.out.println("Banco de dados: Placas Mercosul com inicial " + ms1 + " criado!");
+            System.out.println("Banco de dados: Placas Mercosul com inicial " + l4 + " criado!");
         }
         System.out.println("Banco de dados criado!");
         System.out.println("Total de placas padrão BR criadas: " + contadorBR);
         System.out.println("Total de placas padrão Mercosul criadas; " + contadorMS);
         System.out.println("Total de placas criadas: " + (contadorMS + contadorBR));
+    }
+
+    void criaDirRegistro() {
+        String pastaDoRegistro = "Registro";
+
+        File pasta = new File(pastaDoRegistro);
+        if(!verificaRegistro()) {
+            pasta.mkdir();
+        }
+
     }
 }

@@ -1,53 +1,29 @@
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
 public class Registro {
 
-    private static final String PADRAO_BRASIL = "Brasil";
-    private static final String PADRAO_MERCOSUL = "Mercosul";
+    boolean verificaRegistro() {
+        String pastaDoRegistro = "Registro";
+        File pasta = new File(pastaDoRegistro);
 
-    void registraPlaca() {
-
-        /*
-        todo
-            vai chamar a verificação do registro e caso não haja registro, registrará a placa do usuário
-            caso seja encontrada no banco de dados.
-         */
+        if(!pasta.exists() || !pasta.isDirectory()) {
+            System.out.println("Diretório de registros não existe!");
+            return false;
+        }
+        System.out.println("Diretório de registro existente.");
+        return true;
     }
 
-    boolean procuraPlaca(String padrao, String placaProcurada) {
+    void criaDirRegistro() {
+        String pastaDoRegistro = "Registro";
 
-        if(placaProcurada == null || placaProcurada.isEmpty()) {
-            System.out.println("A placa procurada não pode ser nula ou vazia.");
-            return false;
+        File pasta = new File(pastaDoRegistro);
+        if(!verificaRegistro()) {
+            pasta.mkdir();
         }
 
-        String caminhoDoArquivo;
-
-        if (padrao.equals(PADRAO_MERCOSUL)) {
-            caminhoDoArquivo = "Banco de Dados/Placas Mercosul com inicial " + placaProcurada.charAt(0) + ".txt";
-        } else if (padrao.equals(PADRAO_BRASIL)) {
-            caminhoDoArquivo = "Banco de Dados/Placas Brasil com inicial " + placaProcurada.charAt(0) + ".txt";
-        } else {
-            System.err.println("Padrão inválido. Use 'Mercosul' ou 'Brasil'.");
-            return false;
-        }
-
-        try (BufferedReader leitor = new BufferedReader(new FileReader(caminhoDoArquivo))) {
-            String linha;
-            while ((linha = leitor.readLine()) != null) {
-                if (linha.contains(placaProcurada)) {
-                    System.out.println("Placa encontrada no arquivo: " + caminhoDoArquivo);
-                    System.out.println("Placa encontrada na linha: " + linha);
-                    return true;
-                }
-            }
-        } catch (IOException exc) {
-            System.err.println("Erro ao ler o arquivo: " + caminhoDoArquivo);
-            exc.printStackTrace();
-        }
-        System.out.println("Placa não encontrada no arquivo: "  + caminhoDoArquivo);
-        return false;
     }
 }

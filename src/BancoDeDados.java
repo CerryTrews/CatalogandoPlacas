@@ -1,7 +1,4 @@
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 
 public class BancoDeDados {
 
@@ -30,18 +27,7 @@ public class BancoDeDados {
                 return false;
             }
         }
-        return true;
-    }
-
-    boolean verificaRegistro() {
-        String pastaDoRegistro = "Registro";
-        File pasta = new File(pastaDoRegistro);
-
-        if(!pasta.exists() || !pasta.isDirectory()) {
-            System.out.println("Diretório de registros não existe!");
-            return false;
-        }
-        System.out.println("Diretório de registro existente.");
+        System.out.println("Diretório do Banco de Dados encontrado.");
         return true;
     }
 
@@ -134,13 +120,31 @@ public class BancoDeDados {
         System.out.println("Total de placas criadas: " + (contadorMS + contadorBR));
     }
 
-    void criaDirRegistro() {
-        String pastaDoRegistro = "Registro";
+    boolean procuraPlaca(String placaProcurada) {
 
-        File pasta = new File(pastaDoRegistro);
-        if(!verificaRegistro()) {
-            pasta.mkdir();
+        String caminhoDoArquivo;
+
+        if (placaProcurada.contains("-")) {
+            caminhoDoArquivo = "Banco de Dados/Placas Brasil com inicial " + placaProcurada.charAt(0) + ".txt";
+        } else {
+            caminhoDoArquivo = "Banco de Dados/Placas Mercosul com inicial " + placaProcurada.charAt(0) + ".txt";
         }
 
+        try (BufferedReader leitor = new BufferedReader(new FileReader(caminhoDoArquivo))) {
+            String linha;
+            while ((linha = leitor.readLine()) != null) {
+                if (linha.contains(placaProcurada)) {
+                    System.out.println("Placa procurada: " + placaProcurada);
+                    System.out.println("Arquivo: " + caminhoDoArquivo);
+                    System.out.println("Linha: " + linha);
+                    return true;
+                }
+            }
+        } catch (IOException exc) {
+            System.err.println("Erro ao ler o arquivo: " + caminhoDoArquivo);
+            exc.printStackTrace();
+        }
+        System.out.println("Placa não encontrada.");
+        return false;
     }
 }

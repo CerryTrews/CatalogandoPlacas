@@ -3,6 +3,9 @@ import java.io.*;
 public class BancoDeDados {
 
     boolean verificaBD() {
+
+        verificaReg();
+
         String pastaDoBanco = "Banco de Dados";
         File pasta = new File(pastaDoBanco);
 
@@ -27,8 +30,19 @@ public class BancoDeDados {
                 return false;
             }
         }
-        System.out.println("Diretório do Banco de Dados encontrado.");
         return true;
+    }
+
+    boolean verificaReg() {
+
+        String pastaDoRegistro = "Registro";
+        File pastaReg = new File(pastaDoRegistro);
+
+        if(!(pastaReg.exists() || pastaReg.isDirectory())) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     void criaBD() {
@@ -37,11 +51,14 @@ public class BancoDeDados {
         int n1, n2, n3, n4, n5, n6, n7;
         long contadorBR = 0, contadorMS = 0;
 
+        if(verificaReg()) {
+            criaReg();
+        }
+
         String pastaDoBanco = "Banco de Dados";
         String caminhoDados = "Banco de Dados/";
 
         if(verificaBD()) {
-            System.out.println("Banco de Dados encontrado.");
             return;
         }
 
@@ -118,6 +135,37 @@ public class BancoDeDados {
         System.out.println("Total de placas padrão BR criadas: " + contadorBR);
         System.out.println("Total de placas padrão Mercosul criadas; " + contadorMS);
         System.out.println("Total de placas criadas: " + (contadorMS + contadorBR));
+    }
+
+    void criaReg() {
+        String pastaReg = "Registro";
+        String caminhoReg = "Registro/";
+
+        File pasta = new File(pastaReg);
+
+        if(!pasta.exists()) {
+            boolean criada = pasta.mkdir();
+
+            if(criada) {
+                System.out.println("Pasta de registros foi criada!");
+            } else {
+                System.out.println("Falha ao criar pasta de registros.");
+                return;
+            }
+        }
+
+        String caminhoArquivoReg = pasta + "Reg.txt";
+
+        if(caminhoArquivoReg.isEmpty()) {
+            System.out.println("Criando arquivo de registros.");
+            String nomeArquivo = caminhoReg + "Reg.txt";
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(nomeArquivo))) {
+                writer.write("\n");
+            } catch (IOException exc) {
+                System.out.println("Erro ao criar o arquivo.");
+                exc.printStackTrace();
+            }
+        }
     }
 
     boolean procuraPlaca(String placaProcurada) {

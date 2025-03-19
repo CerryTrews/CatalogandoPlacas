@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 class Usuario {
-    private Scanner input = new Scanner(System.in);
+    private final Scanner input = new Scanner(System.in);
 
     public int inputI() {
         return input.nextInt();

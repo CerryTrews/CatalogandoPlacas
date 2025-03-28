@@ -162,7 +162,7 @@ public class BancoDeDados {
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(nomeArquivo))) {
                 writer.write("\n");
             } catch (IOException exc) {
-                System.out.println("Erro ao criar o arquivo.");
+                System.out.println("?Erro ao criar o arquivo?.");
                 exc.printStackTrace();
             }
         }

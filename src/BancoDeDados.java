@@ -4,7 +4,7 @@ public class BancoDeDados {
 
     boolean verificaBD() {
 
-        verificaReg();
+        verificaRegFile();
 
         String pastaDoBanco = "Banco de Dados";
         File pasta = new File(pastaDoBanco);
@@ -33,7 +33,7 @@ public class BancoDeDados {
         return true;
     }
 
-    boolean verificaReg() {
+    boolean verificaRegFile() {
 
         String pastaDoRegistro = "Registro";
         File pastaReg = new File(pastaDoRegistro);
@@ -51,8 +51,8 @@ public class BancoDeDados {
         int n1, n2, n3, n4, n5, n6, n7;
         long contadorBR = 0, contadorMS = 0;
 
-        if(verificaReg()) {
-            criaReg();
+        if(verificaRegFile()) {
+            criaRegFile();
         }
 
         String pastaDoBanco = "Banco de Dados";
@@ -137,7 +137,7 @@ public class BancoDeDados {
         System.out.println("Total de placas criadas: " + (contadorMS + contadorBR));
     }
 
-    void criaReg() {
+    void criaRegFile() {
         String pastaReg = "Registro";
         String caminhoReg = "Registro/";
 

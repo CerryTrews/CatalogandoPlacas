@@ -1,3 +1,5 @@
+package Estrutura;
+
 import java.io.*;
 
 public class BancoDeDados {
@@ -35,7 +37,7 @@ public class BancoDeDados {
 
     boolean verificaRegFile() {
 
-        String pastaDoRegistro = "Registro";
+        String pastaDoRegistro = "Estrutura.Registro";
         File pastaReg = new File(pastaDoRegistro);
 
         if(!(pastaReg.exists() || pastaReg.isDirectory())) {
@@ -138,8 +140,8 @@ public class BancoDeDados {
     }
 
     void criaRegFile() {
-        String pastaReg = "Registro";
-        String caminhoReg = "Registro/";
+        String pastaReg = "Estrutura.Registro";
+        String caminhoReg = "Estrutura.Registro/";
 
         File pasta = new File(pastaReg);
 

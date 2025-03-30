@@ -2,10 +2,13 @@ import java.io.*;
 
 public class Registro {
     String arquivoRegistro;
+    Usuario user = new Usuario();
+    String tipo, modelo, cor, ano;
 
     Registro(String nomeArquivo) {
         arquivoRegistro = nomeArquivo;
     }
+
 
     boolean verificaRegistroPlaca(String placa) {
 
@@ -17,7 +20,7 @@ public class Registro {
                 ch = leitor.read();
                 if (ch == '#') {
                     registro = leitor.readLine();
-                    System.out.println("Placa: " + registro);
+                    //System.out.println("Placa: " + registro);
                     if (placa.compareTo(registro) == 0) {
                         do {
                             info = leitor.readLine();
@@ -28,7 +31,6 @@ public class Registro {
                         while ((info != null) && (info.compareTo("") != 0));
                         return true;
                     }
-
                 }
             }
             while (ch != -1);
@@ -37,7 +39,6 @@ public class Registro {
             exc.printStackTrace();
             return false;
         }
-        System.out.println("Placa " + placa + " não possui registro.");
         return false;
     }
 
@@ -51,9 +52,46 @@ public class Registro {
         try {
             topic = br.readLine().toUpperCase().trim();
         } catch (IOException exc) {
-            System.out.println("Erro no console.");
+            System.out.println("Erro ao ler o arquivo.");
         }
         return topic;
+    }
+
+    void registraPlaca(String placa) {
+
+        String nomeDoArquivo = "Registro\\Reg.txt";
+
+        if(!verificaRegistroPlaca(placa)) {
+            try (BufferedWriter escritor = new BufferedWriter(new FileWriter(nomeDoArquivo, true))) {
+
+                escritor.write("\n#" + placa + "\n");
+
+                escritor.write("Placa: " + placa + "\n");
+
+                System.out.print("Tipo de veículo: ");
+                tipo = user.inputS();
+                escritor.write("Tipo: " + tipo + "\n");
+
+                System.out.print("Modelo: ");
+                modelo = user.inputS();
+                escritor.write("Modelo: " + modelo + "\n");
+
+                System.out.print("Cor: ");
+                cor = user.inputS();
+                escritor.write("Cor: " + cor + "\n");
+
+                System.out.print("Ano: ");
+                ano = user.inputS();
+                escritor.write("Ano: " + ano + "\n");
+
+            } catch (IOException exc) {
+                System.out.println("Erro ao tentar escrever no arquivo.");
+                exc.printStackTrace();
+            }
+        } else {
+            System.out.println("A placa " + placa + " já possui registro.");
+        }
+
     }
 }
 

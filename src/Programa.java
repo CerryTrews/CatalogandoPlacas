@@ -1,7 +1,6 @@
 public class Programa {
     private final BancoDeDados bd = new BancoDeDados();
-    private final Registro reg = new Registro("C:\\Users\\Cerry\\IdeaProjects\\CatalogandoPlacas\\Registro\\Reg.txt");
-    String topic;
+    private final Registro reg = new Registro("Registro\\Reg.txt");
     private final Usuario user = new Usuario();
 
 
@@ -12,6 +11,7 @@ public class Programa {
         System.out.println("    2. Cria banco de dados.");
         System.out.println("    3. Procurar placa.");
         System.out.println("    4. Verifica registro da placa.");
+        System.out.println("    5. Registra uma placa.");
         System.out.println("    0. Finaliza o programa.\n");
 
         userEscolhe();
@@ -43,11 +43,17 @@ public class Programa {
                 bd.procuraPlaca(user.inputS());
                 break;
             case 4:
+                String topic;
                 user.inputS();
                 topic = reg.getPlaca();
                 if(!reg.verificaRegistroPlaca(topic)) {
                     System.out.println("");
                 }
+                break;
+            case 5:
+                user.inputS();
+                System.out.print("Insira a placa que deseje registrar: ");
+                reg.registraPlaca(user.inputS());
                 break;
             default:
                 System.out.println("opção inválida.\n");

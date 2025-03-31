@@ -1,5 +1,5 @@
 ## Programa criado com o intuíto de estudo e aplicação de várias técnicas do JAVA. 
-___
+
 ### Banco de dados_
     A classe Banco De Dados é encarregada de criar, verificar e manipular
     arquivos pertencentes ao banco de dados que consiste em:
@@ -8,12 +8,8 @@ ___
         veículares que possam ter tanto em padrão Brasileiro ou no Padrão do
         Mercosul por ordem alfabética no formato .txt.
     
-    Também cria uma pasta chamada Registro com apenas um arquivo dentro
-    com o nome de Reg.txt
-    Dentro do arquivo Reg.txt será armazenado todas as informações sobre
-    as placas e os veículos que forem registrados pelo usuário.
-    Também será usado pelo programa para fazer pesquisas requeridas pelo
-    usuário.
+        Diretório Registro que que possue o arquivo Reg.txt, o mesmo será uti-
+        lizado pela classe Registro para manipulação e consulta.
 
 ### Registro_
     A classe Registro é encarregada de verificar e manipular os arquivos
